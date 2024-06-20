@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct TrendingResponse: Codable {
+  let code: Int
+  let trendings: [Trending]
+  
+  enum CodingKeys: String, CodingKey {
+    case code
+    case trendings = "data"
+  }
+}

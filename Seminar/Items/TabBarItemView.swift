@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct TabBarItemView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var tab: TabBarType
+  var isSelected: Bool
+  
+  var body: some View {
+    VStack {
+      Image(isSelected ? tab.selectedIcon : tab.deselectedIcon)
+        .frame(width: 24, height: 24)
+      
+      Text(tab.title)
+        .font(.system(size: 18, weight: isSelected ? .heavy : .medium))
+        .foregroundStyle(isSelected ? .white : .gray)
     }
+    .frame(maxWidth: .infinity)
+  }
 }
 
 #Preview {
-    TabBarItemView()
+  TabBarItemView(tab: .setting, isSelected: true)
+    .background(.black)
 }

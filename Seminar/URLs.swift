@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum URLs {
+  static let domain = "http://palestine.procyoni.com"
+}

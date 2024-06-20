@@ -8,9 +8,13 @@
 import Combine
 
 class HomeViewModel: ObservableObject {
-  @Published private(set) var movies = [String]()
+  @Published private(set) var trendings = [TrendingViewModel]()
   
-  func fetch() {
-    
+  private let useCase = HomeUseCase()
+  
+  @MainActor func fetch() {
+    Task {
+      self.trendings = await useCase.loadTrending()
+    }
   }
 }

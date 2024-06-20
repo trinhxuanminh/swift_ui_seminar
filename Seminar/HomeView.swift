@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @StateObject private var viewModel = HomeViewModel()
+  
+  var body: some View {
+    ScrollView(.vertical, showsIndicators: false) {
+      LazyVGrid(columns: [GridItem(.adaptive(minimum: 140, maximum: 200), spacing: 12)], spacing: 16) {
+        ForEach(viewModel.trendings, id: \.id) { trendingViewModel in
+          TrendingView(viewModel: trendingViewModel)
+            .frame(maxHeight: 300)
+        }
+      }
+      .padding([.trailing, .leading], 16)
+      .padding([.top], 40)
+      .padding([.bottom], 100)
     }
+    .onAppear {
+      viewModel.fetch()
+    }
+  }
 }
 
 #Preview {
-    HomeView()
+  HomeView()
 }

@@ -8,33 +8,34 @@
 import Foundation
 
 enum EndPoint {
+  case trending
   
   var domain: String {
     switch self {
-    default:
-      return ""
+    case .trending:
+      return URLs.domain
     }
   }
   
   var path: String? {
     switch self {
-    default:
-      return ""
+    case .trending:
+      return "/now/v1/trending"
     }
   }
   
   var method: String {
     switch self {
-    default:
-      return ""
+    case .trending:
+      return "GET"
     }
   }
   
   var params: [String: String?] {
     var params: [String: String?] = [:]
     switch self {
-    default:
-      break
+    case .trending:
+      params["version"] = "27"
     }
     return params
   }
